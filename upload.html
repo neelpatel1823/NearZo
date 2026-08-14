@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<link href="https://fonts.googleapis.com/css2?family=Bitcount+Ink:wght@100..900&family=Rubik+Spray+Paint&display=swap" rel="stylesheet">
+
+
+	<link rel="stylesheet" href="style-home.css">
+	<title>NearZo Just Search it-up</title>
+</head>
+<body class="uploadbody">
+	<header class="navbar">
+		<a href="index.html">NearZo</a>
+		<nav>	
+		<a href="index.html">Home</a>
+		<a href="products.html">Product</a>
+		<a href="upload.html">For Business</a>
+		</nav></header>
+ <main class="upload-page">
+ 	<div class="upload-heading">
+ 		<h1>List Your Products</h1>
+ 	</div>
+ 	<div class="upload-layout">
+ 		<section class="upload-card">
+ 			<h2>Add Product</h2>
+ 			<p>Enter your product details below.</p>
+
+ 			<form class="uploadForm" enctype="multipart/form-data">
+   				 <label>Upload product Image here</label>
+        		<input type="file" accept=".jpeg, .png, .webp" id="productImage" required>
+   				<br>
+   	 
+    			<label>Product Name</label>
+   				<input type="text" id="productName" placeholder="e.g. Charger" required><br>
+    
+    			<label>Price</label>
+    			<span>₹</span>
+   			 	<input type="text" id="productPrice" placeholder="₹899" required><br>
+    
+    			<label>Description</label><br>
+    			<textarea id="productDescription" placeholder="Describe your product..." rows="5" required></textarea><br>
+    
+    			<label>Availability</label>
+    			<select id="productAvailability" required>
+       			 <option value="In Stock">In Stock</option>
+       			 <option value="Low Stock">Low Stock</option>
+       			 <option value="Out of Stock">Out of Stock</option>
+    			</select><br>
+
+   				 <label>Store Name</label>
+    			<input type="text" id="storeName" placeholder="e.g. Alfiz ka Store" required><br>
+
+<label>Store Location</label>
+			<input type="text" id="storeLocation" placeholder="e.g. Jogeshwari West" required><br>
+    
+    			<button type="submit" class="submit-button">Add Product</button>
+			</form>
+		</section>
+ 		  	
+	</div>
+ </main>
+ <script type="module" src="upload.js"></script>
+</body>
+</html>
