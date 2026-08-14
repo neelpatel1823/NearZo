@@ -7,5 +7,4 @@ MongoDB (Running locally on default port 27017 or a MongoDB Atlas connection str
 Docker & Docker Compose (Optional, for containerized run)
 
 ## Clone the Repository
-git clone https://github.com/neelpatel1823/Nearzo.git
-cd "Nearzo final"
+``` bash git clone https://github.com/neelpatel1823/Nearzo.git cd "Nearzo final"```
