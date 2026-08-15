@@ -1,6 +1,6 @@
 # NearZo
 
-## Prerequisites
+## What you need
 Before running the project locally, ensure you have:
 * **Node.js** (v18 or higher) & npm
 * **MongoDB** (Running locally on default port 27017 or a MongoDB Atlas connection string)
