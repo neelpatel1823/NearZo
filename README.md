@@ -30,11 +30,11 @@ npm start
 ### Run with Docker
 **Start containers**
 ``` bash
-docker-compose up --build
+docker-compose up 
 ```
-**Run in background**
+**Run detached mode **
 ``` bash
-docker-compose up -d --build
+docker-compose up -d 
 ```
 **Stop containers**
 ``` bash
