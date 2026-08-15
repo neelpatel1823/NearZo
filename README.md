@@ -5,6 +5,7 @@ Before running the project locally, ensure you have:
 * **Node.js** (v18 or higher) & npm
 * **MongoDB** (Running locally on default port 27017 or a MongoDB Atlas connection string)
 * **Docker & Docker Compose** (Optional, for containerized run)
+---
 
 ### Clone the Repository
 ``` bash
@@ -39,15 +40,18 @@ docker-compose up -d --build
 ``` bash
 docker-compose down
 ```
-## Access the Web Application  **http://localhost:3000/**
----
+**Access the Web Application** http://localhost:3000/
 
-**Check MogoDB connected**
-running at port 5000;
+---
+## DataBase
+
+Check MogoDB connected
+running at port 5000
 ``` bash
 docker-compose logs backend --tail 50
 ```
-**Access DataBase**
+
+Access DataBase
 ```bash
 docker-compose exec mongo mongosh
 ```
@@ -56,7 +60,7 @@ Run Inside Shell
 show dbs
 use nearzo
 show collections => 'products'
-db.products.find({}, {image:0}).pretty()
+db.products.find({},{image:0})
 ```
 ---
 
