@@ -24,7 +24,7 @@ npm run dev
 ```  bash
 npm start
 ```
-## Access the Web Application  **http://localhost:3000/**
+---
 
 ### Run with Docker
 **Start containers**
@@ -39,6 +39,26 @@ docker-compose up -d --build
 ``` bash
 docker-compose down
 ```
+## Access the Web Application  **http://localhost:3000/**
+---
+
+**Check MogoDB connected**
+running at port 5000;
+``` bash
+docker-compose logs backend --tail 50
+```
+**Access DataBase**
+```bash
+docker-compose exec mongo mongosh
+```
+Run Inside Shell
+```bash
+show dbs
+use nearzo
+show collections => 'products'
+db.products.find({}, {image:0}).pretty()
+```
+---
 
 
 
