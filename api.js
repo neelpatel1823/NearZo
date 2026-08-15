@@ -33,13 +33,4 @@ export const productApi = {
     headers: data instanceof FormData ? {} : { 'Content-Type': 'application/json' }
   }),
   delete: (id) => fetchApi(`/products/${id}`, { method: 'DELETE' })
-};
-
-export function fileToBase64(file) {
-  return new Promise((resolve, reject) => {
-    const reader = new FileReader();
-    reader.onload = () => resolve(reader.result);
-    reader.onerror = reject;
-    reader.readAsDataURL(file);
-  });
-}
+}; // ./uploads/images multer file upload 
