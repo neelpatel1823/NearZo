@@ -9,7 +9,7 @@ Before running the project locally, ensure you have:
 ### Clone the Repository
 ``` bash
 git clone https://github.com/neelpatel1823/Nearzo.git
-cd "Nearzo final"
+cd Nearzo
 ```
 ### Install Dependencies
 ``` bash
