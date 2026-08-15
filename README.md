@@ -32,7 +32,7 @@ npm start
 ``` bash
 docker-compose up 
 ```
-**Run detached mode **
+**Run detached mode**
 ``` bash
 docker-compose up -d 
 ```
