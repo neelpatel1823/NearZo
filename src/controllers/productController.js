@@ -1,4 +1,6 @@
 const Product = require('../models/Product');
+const fs = require('fs');
+const path = require('path');
 
 exports.getAllProducts = async (req, res) => {
   try {
@@ -21,10 +23,6 @@ exports.getProductById = async (req, res) => {
   }
 };
 
-function fileToBase64(file) {
-  return `data:${file.mimetype};base64,${file.buffer.toString('base64')}`;
-}
-
 exports.createProduct = async (req, res) => {
   try {
     console.log('req.file:', req.file);
@@ -32,10 +30,10 @@ exports.createProduct = async (req, res) => {
     
     const { name, price, description, availability, storeName, storeLocation } = req.body;
     
-    let image = '';
+    let imagePath = '';
     if (req.file) {
-      image = fileToBase64(req.file);
-      console.log('Image converted, length:', image.length);
+     imagePath = '/uploads/images/' + req.file.filename;
+      console.log('Image saved:', imagePath); 
     } else {
       console.log('No file in request');
     }
@@ -47,13 +45,17 @@ exports.createProduct = async (req, res) => {
       availability,
       storeName,
       storeLocation,
-      image
+      image: imagePath
     });
 
     const savedProduct = await product.save();
     console.log('Saved product image:', savedProduct.image ? 'present' : 'empty');
     res.status(201).json(savedProduct);
   } catch (error) {
+    if (req.file) {
+      const filePath = path.join(__dirname, '..', '..', 'uploads', 'images', req.file.filename);
+      fs.unlink(filePath, () => {});
+    }
     res.status(400).json({ message: error.message });
   }
 };
@@ -65,7 +67,7 @@ exports.updateProduct = async (req, res) => {
     const updateData = { name, price: Number(price), description, availability, storeName, storeLocation };
     
     if (req.file) {
-      updateData.image = fileToBase64(req.file);
+      updateData.image = '/uploads/images/' + req.file.filename;
     }
 
     const product = await Product.findByIdAndUpdate(
@@ -74,10 +76,23 @@ exports.updateProduct = async (req, res) => {
       { new: true, runValidators: true }
     );
     if (!product) {
+       if (req.file) {
+        const filePath = path.join(__dirname, '..', '..', 'uploads', 'images', req.file.filename);
+        fs.unlink(filePath, () => {});
+      }
       return res.status(404).json({ message: 'Product not found' });
+    }
+        
+    if (req.file && product.image && product.image !== updateData.image) {
+      const oldFilePath = path.join(__dirname, '..', '..', product.image);
+      fs.unlink(oldFilePath, () => {});
     }
     res.json(product);
   } catch (error) {
+        if (req.file) {
+      const filePath = path.join(__dirname, '..', '..', 'uploads', 'images', req.file.filename);
+      fs.unlink(filePath, () => {});
+    }
     res.status(400).json({ message: error.message });
   }
 };
@@ -88,6 +103,12 @@ exports.deleteProduct = async (req, res) => {
     if (!product) {
       return res.status(404).json({ message: 'Product not found' });
     }
+        
+    if (product.image) {
+      const filePath = path.join(__dirname, '..', '..', product.image);
+      fs.unlink(filePath, () => {});
+    }
+    
     res.json({ message: 'Product deleted successfully' });
   } catch (error) {
     res.status(500).json({ message: error.message });
